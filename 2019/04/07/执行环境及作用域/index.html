@@ -5,18 +5,19 @@
   
 
   
-  <title>李正的博客</title>
+  <title>执行环境及作用域 | 李正的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录美好生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="李正的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="执行环境执行环境(execution context)是 javascript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一个执行环境。根据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="执行环境及作用域">
+<meta property="og:url" content="http://yoursite.com/2019/04/07/执行环境及作用域/index.html">
 <meta property="og:site_name" content="李正的博客">
-<meta property="og:description" content="记录美好生活">
+<meta property="og:description" content="执行环境执行环境(execution context)是 javascript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一个执行环境。根据">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-07T14:57:59.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李正的博客">
-<meta name="twitter:description" content="记录美好生活">
+<meta name="twitter:title" content="执行环境及作用域">
+<meta name="twitter:description" content="执行环境执行环境(execution context)是 javascript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一个执行环境。根据">
   
     <link rel="alternate" href="/atom.xml" title="李正的博客" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-执行环境及作用域" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-执行环境及作用域" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/07/执行环境及作用域/" class="article-date">
   <time datetime="2019-04-07T14:49:23.419Z" itemprop="datePublished">2019-04-07</time>
@@ -78,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/07/执行环境及作用域/">执行环境及作用域</a>
+    <h1 class="article-title" itemprop="name">
+      执行环境及作用域
     </h1>
   
 
@@ -104,88 +103,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-小诗一首" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/07/小诗一首/" class="article-date">
-  <time datetime="2019-04-07T14:40:36.172Z" itemprop="datePublished">2019-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/07/小诗一首/">小诗一首</a>
-    </h1>
+    <a href="/2019/04/07/小诗一首/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">小诗一首</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2018年01月26日，天气：暴雪。</p>
-<h2 id="记雪"><a href="#记雪" class="headerlink" title="记雪"></a>记雪</h2><p> 丁酉之冬，寒进五九，<br> 碎玉琼浆，突降福地，<br> 薄晶摔落，冰絮竞舞，<br> 万顷同缟，千岩俱白，<br> 驰遥思于千里，寄远志于喻山，<br> 颂缤纷繁骛之貌，叹皓皓皎洁之仪。<br> 虬枝劲舞，游龙抖擞，<br> 虹光灿烂，透骨清寒，<br> 散漫交错，氛氲萧索，<br> 洞天石扉，粉雕玉琢，<br> 践霜雪闻交响，摇凝枝似庆笛。<br> 白梅颔首孤自赏，鸟雀殷勤报春来。<br> 岁岁道寒，寒不过今岁，<br> ……</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/07/小诗一首/" data-id="cju71ygcm00018otzbnn6rmzr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/07/hello-world/" class="article-date">
-  <time datetime="2019-04-07T13:22:40.936Z" itemprop="datePublished">2019-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/07/hello-world/">欢迎光临我的博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>你好，我是李正，很高兴认识你，这是我的第一篇文章.</p>
-<h2 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h2><h3 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里是写代码的地方</span><br></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://www.baidu.com" target="_blank" rel="noopener">点这里</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/07/hello-world/" data-id="cju71ygaz00008otztuttgp8y" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
