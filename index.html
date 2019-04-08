@@ -375,21 +375,20 @@
       
         
           
-            <h3 id="作为对象方法调用"><a href="#作为对象方法调用" class="headerlink" title="作为对象方法调用"></a>作为对象方法调用</h3><p>&emsp;&emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var point = &#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo : <span class="keyword">function</span>(x,y)&#123;</span><br><span class="line">      this.x += x;</span><br><span class="line">	  this.y += y;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">point.moveTo(1, 1)  //this绑定到point对象</span><br></pre></td></tr></table></figure>
-<h3 id="作为函数调用"><a href="#作为函数调用" class="headerlink" title="作为函数调用"></a>作为函数调用</h3><p>&emsp;&emsp;函数也可以被直接调用，此时绑定到全局对象。在浏览器端，window就是全局对象。比如下面的例子：函数被调用时，绑定到全局对象，接下来执行赋值语句，这相当于隐式声明了一个全局变量，这显然不是调用者希望的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> makeNoSense(x)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">makeNoSense(5);  //此时x是一个值为5的全局变量</span><br></pre></td></tr></table></figure>
-<h3 id="作为内部函数调用"><a href="#作为内部函数调用" class="headerlink" title="作为内部函数调用"></a>作为内部函数调用</h3><p>&emsp;&emsp;对于内部函数，即声明在另外一个函数体内的函数，这种绑定到全局对象的方式会产生另外一个问题。我们仍然以前面提到的point对象为例，这次我们希望在moveTo方法内部定义两个函数，分别将x，y坐标进行平移。结果可能出乎大家的意料，不仅point对象没有移动，反而多出两个全局变量x，y。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var point = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo: <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">      //内部函数</span><br><span class="line">	  var moveX = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     this.x = x;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  var moveY = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     this.y = y;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  </span><br><span class="line">	  moveX();</span><br><span class="line">	  moveY();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">   point.moveTo(1, 1); </span><br><span class="line">   point.x; //==&gt;0 </span><br><span class="line">   point.y; //==&gt;0 </span><br><span class="line">   x; //==&gt;1 </span><br><span class="line">   y; //==&gt;1</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这属于Javascript的设计缺陷，正确的设计方式是内部函数的this应该绑定到其外层函数对应的对象上，为了避免这一设计缺陷，聪明的Javascript程序员想出了变量替代的方法，该变量一般被命名为that。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var point = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo: <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">	  var that = this;</span><br><span class="line">      //内部函数</span><br><span class="line">	  var moveX = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     that.x = x;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  var moveY = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     that.y = y;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  </span><br><span class="line">	  moveX();</span><br><span class="line">	  moveY();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">   point.moveTo(1, 1); </span><br><span class="line">   point.x; //==&gt;1 </span><br><span class="line">   point.y; //==&gt;1</span><br></pre></td></tr></table></figure>
-<h3 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h3><p>&emsp;&emsp;Javascript支持面向对象式编程，与主流的面向对象式编程语言不同，Javascript并没有类的概念，而是使用基于原型的继承方式。相应的，Javascript中的构造函数也很特殊，如果不使用new调用，则和普通函数一样。作为又一项约定俗成的准则，构造函数以大写字母开头，提醒调用者使用正确的方式调用。如果调用正确，this绑定到新创建的对象上。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Point(x, y)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">   this.y = y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用apply或call调用"><a href="#使用apply或call调用" class="headerlink" title="使用apply或call调用"></a>使用apply或call调用</h3><p>&emsp;&emsp;在Javascript中函数也是对象，对象则有方法，apply或call就是函数对象的方法。这两个方法异常强大，它们允许切换函数执行时的上下文环境，即this绑定的对象。很多Javascript中的技巧以及类库都用到了该方法，让我们看一个具体的例子：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Point(x, y)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">   this.y = y;</span><br><span class="line">   this.moveTo = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">      this.x = x;</span><br><span class="line">	  this.y = y;</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p1 = new Point(0,0);</span><br><span class="line">var p2 = &#123;x: 0,y: 0&#125;;</span><br><span class="line">p1.moveTo(1,1);</span><br><span class="line">p1.moveTo.apply(p2,[10,10]);</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;在上面的例子中，我们使用构造函数生成了一个对象p1，该对象同时具有moveTo方法；使用对象字面量创建了另一个对象p2，我们看到使用apply可以将p1的方法应用到p2上，这时候this也被绑定到对象p2上。另一个方法call也具备同样功能，不同的是最后的参数不是作为一个数组统一传入，而是分开传入的。</p>
-
+            <p>
+              作为对象方法调用&emsp;&emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。
+var point = &#123;   x : 0,   y : 0,   moveTo : funct
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/07/JavaScript中的this/#more" rel="contents">
+                Weiterlesen &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -530,15 +529,19 @@
       
         
           
-            <h3 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h3><p>&emsp;&emsp;执行环境(execution context)是 javascript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在这个对象中。我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。</p>
-<p>&emsp;&emsp;全局执行环境是最外围的一个执行环境。根据 ECMAScript 实现所在的宿主环境不同，表示执行环境的对象也不一样。在web浏览器中，全局执行环境被认为是 window 对象，因此所有全局变量和函数都是作为 window 对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境会被销毁，保存在其中的变量和函数定义也随之销毁。全局执行环境则在应用程序退出如关闭网页或浏览器时才会被销毁。</p>
-<p>&emsp;&emsp;每个函数都有自己的执行环境(局部环境)。当执行流进入一个函数时，函数的环境会被推入一个环境栈中，而在函数执行后，栈将其环境弹出，把控制权返回给之前的执行环境，ECMAScript 程序的执行流正是由这个方便的机制控制着。</p>
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>&emsp;&emsp;当代码在一个环境中执行时，会创建变量对象的一个作用域链(scope chain)。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动函数(activation object)作为变量对象，活动对象在最开始只包含一个变量，即 arguments 对象(这个对象在全局执行环境中是不存在的)。作用域链中的下一个变量对象来自包含(外部)环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境，全局执行环境中的变量对象始终都是作用域链中的最后一个对象。</p>
-<p>&emsp;&emsp;标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级的向后回溯，直到找到标识符为止。如果找不到标识符，通常会导致错误的发生。请看下面的示例代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var color=<span class="string">"blue"</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">changeColor</span></span>()&#123;</span><br><span class="line">   var anotherColor = <span class="string">"red"</span>;</span><br><span class="line">   <span class="keyword">function</span> <span class="function"><span class="title">swapColors</span></span>()&#123;</span><br><span class="line">      var tempColor = anotherColor;</span><br><span class="line">      anotherColor = color;</span><br><span class="line">      color = tempColor;</span><br><span class="line">      // 这里可以访问 color、 anotherColor 和 tempColor</span><br><span class="line">   &#125;</span><br><span class="line">   // 这里可以访问 color 和 anotherColor，但不能访问 tempColor</span><br><span class="line">   swapColors();</span><br><span class="line">&#125;</span><br><span class="line">// 这里只能访问 color</span><br><span class="line">changeColor();</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;以上代码共涉及 3个执行环境：全局环境、changeColor() 的局部环境和 swapColors() 的局部环境。全局环境中有一个变量 color 和一个函数 changeColor()。changeColor() 的局部环境中有一个名为 anotherColor 的变量和一个名为 swapColors() 的函数，但它也可以访问全局环境中的变量 color。 swapColors() 的局部环境中有一个变量 tempColor，该变量只能在这个环境中访问到。无论全局环境还是 changeColor() 的局部环境都无权访问 tempColor。然而，在 swapColors() 内部则可以访问其他两个环境中的所有变量，因为那两个环境是它的父执行环境。</p>
-
+            <p>
+              执行环境&emsp;&emsp;执行环境(execution context)是 javascript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象(variable object)，环境中定义的所有变量和函数都保存在
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/07/执行环境及作用域/#more" rel="contents">
+                Weiterlesen &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -679,10 +682,20 @@
       
         
           
-            <p>2018年01月26日，天气：暴雪。</p>
-<h2 id="记雪"><a href="#记雪" class="headerlink" title="记雪"></a>记雪</h2><p> 丁酉之冬，寒进五九，<br> 碎玉琼浆，突降福地，<br> 薄晶摔落，冰絮竞舞，<br> 万顷同缟，千岩俱白，<br> 驰遥思于千里，寄远志于喻山，<br> 颂缤纷繁骛之貌，叹皓皓皎洁之仪。<br> 虬枝劲舞，游龙抖擞，<br> 虹光灿烂，透骨清寒，<br> 散漫交错，氛氲萧索，<br> 洞天石扉，粉雕玉琢，<br> 践霜雪闻交响，摇凝枝似庆笛。<br> 白梅颔首孤自赏，鸟雀殷勤报春来。<br> 岁岁道寒，寒不过今岁，<br> ……</p>
-
+            <p>
+              2018年01月26日，天气：暴雪。
+记雪 丁酉之冬，寒进五九， 碎玉琼浆，突降福地， 薄晶摔落，冰絮竞舞， 万顷同缟，千岩俱白， 驰遥思于千里，寄远志于喻山， 颂缤纷繁骛之貌，叹皓皓皎洁之仪。 虬枝劲舞，游龙抖擞， 虹光灿烂，透骨清寒， 散漫交错，氛氲萧索， 洞天石扉，粉雕玉琢， 践霜雪闻交响，摇
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/07/小诗一首/#more" rel="contents">
+                Weiterlesen &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -823,11 +836,22 @@
       
         
           
-            <p>你好，我是李正，很高兴认识你，这是我的第一篇文章.</p>
-<h2 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h2><h3 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里是写代码的地方</span><br></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://www.baidu.com" target="_blank" rel="noopener">点这里</a></p>
+            <p>
+              你好，我是李正，很高兴认识你，这是我的第一篇文章.
+标题一标题二这里是写代码的地方
+更多信息: 点这里
 
+              
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/07/hello-world/#more" rel="contents">
+                Weiterlesen &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
