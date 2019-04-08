@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="作为对象方法调用&amp;emsp;&amp;emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。 123456789var point = &amp;#123;   x : 0,   y : 0,   moveTo : function(x,y)&amp;#123;      this.x += x;	  this.y">
+  <meta name="description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript中的this">
-<meta property="og:url" content="http://yoursite.com/2019/04/07/JavaScript中的this/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/09/25/JavaScript中的this/index.html">
 <meta property="og:site_name" content="李正的博客">
-<meta property="og:description" content="作为对象方法调用&amp;emsp;&amp;emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。 123456789var point = &amp;#123;   x : 0,   y : 0,   moveTo : function(x,y)&amp;#123;      this.x += x;	  this.y">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-07T15:25:36.083Z">
+<meta property="og:updated_time" content="2019-04-08T13:32:26.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的this">
-<meta name="twitter:description" content="作为对象方法调用&amp;emsp;&amp;emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。 123456789var point = &amp;#123;   x : 0,   y : 0,   moveTo : function(x,y)&amp;#123;      this.x += x;	  this.y">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/07/JavaScript中的this/">
+  <link rel="canonical" href="http://yoursite.com/2018/09/25/JavaScript中的this/">
 
 
 
@@ -227,6 +227,23 @@
         
         
           
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -289,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/JavaScript中的this/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/25/JavaScript中的this/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lizheng">
@@ -332,16 +349,30 @@
                 
               
 
-              <time title="创建时间：2019-04-07 23:13:23 / 修改时间：23:25:36" itemprop="dateCreated datePublished" datetime="2019-04-07T23:13:23+08:00">2019-04-07</time>
+              <time title="创建时间：2018-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-25T00:00:00+08:00">2018-09-25</time>
             
 
-            
-              
-
-              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -371,7 +402,9 @@
       
 
       
-        <h3 id="作为对象方法调用"><a href="#作为对象方法调用" class="headerlink" title="作为对象方法调用"></a>作为对象方法调用</h3><p>&emsp;&emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。</p>
+        <p>&emsp;&emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。</p>
+<a id="more"></a>
+<h3 id="作为对象方法调用"><a href="#作为对象方法调用" class="headerlink" title="作为对象方法调用"></a>作为对象方法调用</h3><p>&emsp;&emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var point = &#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo : <span class="keyword">function</span>(x,y)&#123;</span><br><span class="line">      this.x += x;</span><br><span class="line">	  this.y += y;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">point.moveTo(1, 1)  //this绑定到point对象</span><br></pre></td></tr></table></figure>
 <h3 id="作为函数调用"><a href="#作为函数调用" class="headerlink" title="作为函数调用"></a>作为函数调用</h3><p>&emsp;&emsp;函数也可以被直接调用，此时绑定到全局对象。在浏览器端，window就是全局对象。比如下面的例子：函数被调用时，绑定到全局对象，接下来执行赋值语句，这相当于隐式声明了一个全局变量，这显然不是调用者希望的。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> makeNoSense(x)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">makeNoSense(5);  //此时x是一个值为5的全局变量</span><br></pre></td></tr></table></figure>
@@ -414,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/07/执行环境及作用域/" rel="next" title="执行环境及作用域">
-                <i class="fa fa-chevron-left"></i> 执行环境及作用域
+              <a href="/2018/09/01/hello-world/" rel="next" title="欢迎光临我的博客">
+                <i class="fa fa-chevron-left"></i> 欢迎光临我的博客
               </a>
             
           </div>
@@ -423,6 +456,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/27/小诗一首/" rel="prev" title="小诗一首">
+                小诗一首 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -497,6 +534,25 @@
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
               
 
               

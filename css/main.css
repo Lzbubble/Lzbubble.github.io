@@ -1491,7 +1491,7 @@ pre .javascript .function {
   margin-left: 5px;
 }
 .posts-expand .post-meta {
-  margin: 3px 0 60px 0;
+  margin: 3px 0 10px 0;
   color: #999;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
@@ -1774,7 +1774,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #af4eff;
+  background: #47ffaf;
 }
 .feed-link,
 .chat {
@@ -2789,7 +2789,7 @@ ul.breadcrumb li+li:last-child {
 .post {
   margin-top: 1px;
   margin-bottom: 60px;
-  padding: 35px;
+  padding: 10px;
   -webkit-box-shadow: 0 0 20px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 20px rgba(202,203,204,0.5);
 }
