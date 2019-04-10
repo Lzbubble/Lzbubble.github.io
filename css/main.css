@@ -1774,7 +1774,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3833ff;
+  background: #ff22a7;
 }
 .feed-link,
 .chat {
@@ -2728,4 +2728,8 @@ hr {
 }
 .header {
   background: #a3c1f9;
+}
+.posts-expand .post-body #imgWrap  img {
+  padding: 0;
+  border: 0;
 }
