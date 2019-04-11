@@ -96,17 +96,20 @@
 
 
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
+  <meta name="description" content="&amp;emsp;&amp;emsp; 函数表达式的特征；使用函数实现递归；使用闭包定义私有变量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中的this">
-<meta property="og:url" content="http://yoursite.com/2018/09/25/JavaScript中的this/index.html">
+<meta property="og:title" content="函数表达式">
+<meta property="og:url" content="http://yoursite.com/2019/02/23/函数表达式/index.html">
 <meta property="og:site_name" content="李正的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp; 函数表达式的特征；使用函数实现递归；使用闭包定义私有变量">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-11T15:04:09.637Z">
+<meta property="og:image" content="http://ffandii.github.io/Personal-blog/images/post/javascript/scope1.png">
+<meta property="og:image" content="http://ffandii.github.io/Personal-blog/images/post/javascript/scope2.png">
+<meta property="og:updated_time" content="2019-04-11T15:28:38.381Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中的this">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
+<meta name="twitter:title" content="函数表达式">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp; 函数表达式的特征；使用函数实现递归；使用闭包定义私有变量">
+<meta name="twitter:image" content="http://ffandii.github.io/Personal-blog/images/post/javascript/scope1.png">
 
 
 
@@ -114,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2018/09/25/JavaScript中的this/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/23/函数表达式/">
 
 
 
@@ -124,7 +127,7 @@
   };
 </script>
 
-  <title>JavaScript中的this | 李正的博客</title>
+  <title>函数表达式 | 李正的博客</title>
   
 
 
@@ -340,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/25/JavaScript中的this/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/23/函数表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lizheng">
@@ -357,7 +360,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript中的this
+          <h1 class="post-title" itemprop="name headline">函数表达式
 
               
             
@@ -383,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2018-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-25T00:00:00+08:00">2018-09-25</time>
+              <time title="创建时间：2019-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-23T00:00:00+08:00">2019-02-23</time>
             
 
             
@@ -436,22 +439,9 @@
       
 
       
-        <p>&emsp;&emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。</p>
+        <p>&emsp;&emsp; 函数表达式的特征；使用函数实现递归；使用闭包定义私有变量</p>
 <a id="more"></a>
-<h3 id="作为对象方法调用"><a href="#作为对象方法调用" class="headerlink" title="作为对象方法调用"></a>作为对象方法调用</h3><p>&emsp;&emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var point = &#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo : <span class="keyword">function</span>(x,y)&#123;</span><br><span class="line">      this.x += x;</span><br><span class="line">	  this.y += y;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">point.moveTo(1, 1)  //this绑定到point对象</span><br></pre></td></tr></table></figure>
-<h3 id="作为函数调用"><a href="#作为函数调用" class="headerlink" title="作为函数调用"></a>作为函数调用</h3><p>&emsp;&emsp;函数也可以被直接调用，此时绑定到全局对象。在浏览器端，window就是全局对象。比如下面的例子：函数被调用时，绑定到全局对象，接下来执行赋值语句，这相当于隐式声明了一个全局变量，这显然不是调用者希望的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> makeNoSense(x)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">makeNoSense(5);  //此时x是一个值为5的全局变量</span><br></pre></td></tr></table></figure>
-<h3 id="作为内部函数调用"><a href="#作为内部函数调用" class="headerlink" title="作为内部函数调用"></a>作为内部函数调用</h3><p>&emsp;&emsp;对于内部函数，即声明在另外一个函数体内的函数，这种绑定到全局对象的方式会产生另外一个问题。我们仍然以前面提到的point对象为例，这次我们希望在moveTo方法内部定义两个函数，分别将x，y坐标进行平移。结果可能出乎大家的意料，不仅point对象没有移动，反而多出两个全局变量x，y。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var point = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo: <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">      //内部函数</span><br><span class="line">	  var moveX = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     this.x = x;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  var moveY = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     this.y = y;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  </span><br><span class="line">	  moveX();</span><br><span class="line">	  moveY();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">   point.moveTo(1, 1); </span><br><span class="line">   point.x; //==&gt;0 </span><br><span class="line">   point.y; //==&gt;0 </span><br><span class="line">   x; //==&gt;1 </span><br><span class="line">   y; //==&gt;1</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这属于Javascript的设计缺陷，正确的设计方式是内部函数的this应该绑定到其外层函数对应的对象上，为了避免这一设计缺陷，聪明的Javascript程序员想出了变量替代的方法，该变量一般被命名为that。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var point = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo: <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">	  var that = this;</span><br><span class="line">      //内部函数</span><br><span class="line">	  var moveX = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     that.x = x;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  var moveY = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     that.y = y;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  </span><br><span class="line">	  moveX();</span><br><span class="line">	  moveY();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">   point.moveTo(1, 1); </span><br><span class="line">   point.x; //==&gt;1 </span><br><span class="line">   point.y; //==&gt;1</span><br></pre></td></tr></table></figure>
-<h3 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h3><p>&emsp;&emsp;Javascript支持面向对象式编程，与主流的面向对象式编程语言不同，Javascript并没有类的概念，而是使用基于原型的继承方式。相应的，Javascript中的构造函数也很特殊，如果不使用new调用，则和普通函数一样。作为又一项约定俗成的准则，构造函数以大写字母开头，提醒调用者使用正确的方式调用。如果调用正确，this绑定到新创建的对象上。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Point(x, y)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">   this.y = y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用apply或call调用"><a href="#使用apply或call调用" class="headerlink" title="使用apply或call调用"></a>使用apply或call调用</h3><p>&emsp;&emsp;在Javascript中函数也是对象，对象则有方法，apply或call就是函数对象的方法。这两个方法异常强大，它们允许切换函数执行时的上下文环境，即this绑定的对象。很多Javascript中的技巧以及类库都用到了该方法，让我们看一个具体的例子：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Point(x, y)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">   this.y = y;</span><br><span class="line">   this.moveTo = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">      this.x = x;</span><br><span class="line">	  this.y = y;</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p1 = new Point(0,0);</span><br><span class="line">var p2 = &#123;x: 0,y: 0&#125;;</span><br><span class="line">p1.moveTo(1,1);</span><br><span class="line">p1.moveTo.apply(p2,[10,10]);</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;在上面的例子中，我们使用构造函数生成了一个对象p1，该对象同时具有moveTo方法；使用对象字面量创建了另一个对象p2，我们看到使用apply可以将p1的方法应用到p2上，这时候this也被绑定到对象p2上。另一个方法call也具备同样功能，不同的是最后的参数不是作为一个数组统一传入，而是分开传入的。</p>
-
+<div class="p-section"><br>    <h3><i class="fa fa-star"></i> 理解函数表达式</h3><br>    <p>函数表达式是JavaScript中一个既强大又令人感到困惑的特性。定义函数的方式有两种，一种是使用函数声明，另一种就是函数表达式。函数声明的语法是这样的，首先是<code>function</code>关键字，然后是函数的名字。关于函数声明，它的一个重要特征是函数声明提升，意思是在执行代码之前会先读取函数，这就意味着可以把函数声明放在调用它的语句之后。第二种创建函数的方式是使用函数表达式。函数表达式有几种不同的语法形式，以下为最常见的一种形式。</p><br><pre><code class="javascript">var functionName=function(arg0,arg1,arg2){<br>   //函数体<br>};<br></code></pre><br>    <p>这种形式看起来就像是常规的变量赋值语句，即创建一个函数并将它赋值给变量<code>functionName</code>。这种情况下创建的函数叫做匿名函数，因为<code>function</code>关键字后面没有标识符，匿名函数的name属性(<code>functionName.name</code>就是函数名)也是空字符串。<br>    </p><br></div><br><div class="gap-line"></div><br><div class="p-section"><br>    <h3><i class="fa fa-star"></i> 使用函数实现递归</h3><br>    <p>采用松散耦合的方式实现经典的递归阶乘函数，下面是比较常见的一种方式。</p><br><pre><code class="javascript">function factorial(num){<br>   if(num&lt;=1) return 1;<br>   else {<br>      return num<em>arguments.callee(num-1);<br>   }<br>}<br></em></code></pre><br>    <p><code>arguments.callee</code>是一个指向正在执行的函数的指针，因此可以用它来实现经典的递归调用，但在严格模式下，不能通过脚本访问这个指针，会导致错误。不过，可以使用函数命名表达式来达成相同的结果。</p><br><pre><code class="javascript">var factorial=(function f(num){<br>   if(num&lt;=1){<br>      return 1;<br>   }<br>   else {<br>      return numf(num-1);<br>   }<br>});<br></code></pre><br>    <p>以上代码创建了一个名为<code>f()</code>的命名函数表达式，然后将它赋值给变量<code>factorial</code>。即便把函数赋值给了另一个变量，函数的名字<code>f</code>仍然有效，所以递归调用照样能正确完成。这种方式在严格模式和非严格模式下都行得通。<br>    </p><br></div><br><div class="gap-line"></div><br><div class="p-section"><br>    <h3><i class="fa fa-star"></i> 闭包</h3><br>    <p>闭包是指有权访问另一个函数作用域中的变量的函数，创建闭包的常见方式就是在一个函数内部创建另一个函数。</p><br><pre><code class="javascript">function createFunction(propertyName){<br>   return function(object1,object2){<br>          var value1=object1[propertyName];<br>      var value2=object2[propertyName];<br>      if(value1&lt;value2){<br>         return -1;<br>      }<br>      else if(value1&gt;value2) {<br>         return 1;<br>      }<br>      else return 0;<br>   }<br>}<br><br>var result=createFunction(“name”);<br></code></pre><br>    <p>一般情况下，函数执行完毕后，会销毁其中的局部变量。但如果我们调用上面的函数，内部函数会被返回，返回后的函数如果在其他地方被调用了,仍然可以访问到变量<code>propertyName</code>，之所以能够访问到这个变量是因为内部函数的作用域链中已经包含了<code>createFunction()</code>的作用域。要彻底搞清楚其中的细节，必须从理解函数被调用的时候都发生了什么入手。</p><br>    <p>回忆之前关于作用域链的概念，当某个函数被调用时会创建一个执行环境及相应的作用域链。然后，使用<code>arguments</code>和其他命名参数的值初始化函数的变量对象。在作用域链中，外部函数的变量对象始终处在第二位，外部函数的外部函数的变量对象处在第三位，…直到作为作用域链终点的全局变量对象。</p><br>    <div class="image"><img src="http://ffandii.github.io/Personal-blog/images/post/javascript/scope1.png" width="626" height="254"></div><br>    <p>后台的每个执行环境都有一个表示变量的对象——变量对象。全局环境的变量对象始终存在，而像<code>createFunction()</code>这样的局部环境的变量对象，则只在函数执行的过程中存在。在创建函数时，会预先创建一个包含全局变量对象的作用域链，这个作用域链保存在内部的<code>[[scope]]</code>属性中，当调用函数时，会为函数创建一个执行环境，然后通过复制<code>[[scope]]</code>属性中的对象构建起执行环境的作用域链。此后，又有一个变量对象被创建并推入执行环境作用域链的前端，上图中的这个变量对象则为<code>createFunction()</code>的变量对象。作用域本质上是一个指向变量对象的指针列表，它仅仅只是引用变量对象。</p><br>    <p>一般来讲，当函数执行完毕后，局部变量对象就会被销毁，内存中仅保存全局变量对象，但是闭包的情况又有所不同。在另一个函数内部定义的函数会将包含函数（即外部函数）的活动对象添加到它的作用域链中。因此，在<code>createFunction()</code>函数内部定义的匿名函数的作用域链中，实际上将会包含外部函数<code>createFunction()</code>的变量对象。</p><br>    <div class="image"><img src="http://ffandii.github.io/Personal-blog/images/post/javascript/scope2.png" width="601" height="408"></div><br>    <p>在匿名函数从<code>createFunction()</code>中被返回后，它的作用域链被初始化为包含其包含函数的活动对象和全局变量对象。这样，匿名函数就可以访问在包含函数中定义的所有变量。更为重要的是，<code>createFunction()</code>函数在执行完毕后，其活动对象也不会被销毁，因为匿名函数的作用域链仍然在引用这个活动对象。换句话说，当<code>createFunction()</code>函数返回后，其执行环境的作用域链会被销毁，但它的活动对象仍然会留在内存中；直到匿名函数被销毁后，<code>createFunction()</code>的活动对象才会被销毁。</p><br></div>
       
     </div>
 
@@ -481,14 +471,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/01/27/小诗一首/" rel="next" title="小诗一首">
+                <i class="fa fa-chevron-left"></i> 小诗一首
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/08/私有变量/" rel="prev" title="私有变量">
-                私有变量 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/25/执行环境及作用域/" rel="prev" title="执行环境及作用域">
+                执行环境及作用域 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#作为对象方法调用"><span class="nav-number">1.</span> <span class="nav-text">作为对象方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为函数调用"><span class="nav-number">2.</span> <span class="nav-text">作为函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为内部函数调用"><span class="nav-number">3.</span> <span class="nav-text">作为内部函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为构造函数调用"><span class="nav-number">4.</span> <span class="nav-text">作为构造函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用apply或call调用"><span class="nav-number">5.</span> <span class="nav-text">使用apply或call调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"> 理解函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text"> 使用函数实现递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text"> 闭包</span></a></li></ol></div>
             
 
           </div>

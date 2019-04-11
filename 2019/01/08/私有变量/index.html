@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
+  <meta name="description" content="&amp;emsp;&amp;emsp;在块级作用域中创建静态私有变量；利用模块模式为单例创建私有变量和特权方法；增强的模块模式，为单例指定具体的类型。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中的this">
-<meta property="og:url" content="http://yoursite.com/2018/09/25/JavaScript中的this/index.html">
+<meta property="og:title" content="私有变量">
+<meta property="og:url" content="http://yoursite.com/2019/01/08/私有变量/index.html">
 <meta property="og:site_name" content="李正的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;在块级作用域中创建静态私有变量；利用模块模式为单例创建私有变量和特权方法；增强的模块模式，为单例指定具体的类型。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-11T15:04:09.637Z">
+<meta property="og:updated_time" content="2019-04-11T15:26:53.220Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中的this">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。">
+<meta name="twitter:title" content="私有变量">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;在块级作用域中创建静态私有变量；利用模块模式为单例创建私有变量和特权方法；增强的模块模式，为单例指定具体的类型。">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2018/09/25/JavaScript中的this/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/08/私有变量/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>JavaScript中的this | 李正的博客</title>
+  <title>私有变量 | 李正的博客</title>
   
 
 
@@ -340,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/25/JavaScript中的this/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/08/私有变量/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lizheng">
@@ -357,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript中的this
+          <h1 class="post-title" itemprop="name headline">私有变量
 
               
             
@@ -383,7 +383,7 @@
                 
               
 
-              <time title="创建时间：2018-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-25T00:00:00+08:00">2018-09-25</time>
+              <time title="创建时间：2019-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-08T00:00:00+08:00">2019-01-08</time>
             
 
             
@@ -436,21 +436,16 @@
       
 
       
-        <p>&emsp;&emsp;由于运行期绑定的特性，javascript中的this含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑。</p>
+        <p>&emsp;&emsp;在块级作用域中创建静态私有变量；利用模块模式为单例创建私有变量和特权方法；增强的模块模式，为单例指定具体的类型。</p>
 <a id="more"></a>
-<h3 id="作为对象方法调用"><a href="#作为对象方法调用" class="headerlink" title="作为对象方法调用"></a>作为对象方法调用</h3><p>&emsp;&emsp;在Javascript中，函数也是对象，因此函数可以作为一个对象的属性，此时该函数被称为该对象的方法，在使用这种调用方式时，this被自然绑定到该对象。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var point = &#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo : <span class="keyword">function</span>(x,y)&#123;</span><br><span class="line">      this.x += x;</span><br><span class="line">	  this.y += y;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">point.moveTo(1, 1)  //this绑定到point对象</span><br></pre></td></tr></table></figure>
-<h3 id="作为函数调用"><a href="#作为函数调用" class="headerlink" title="作为函数调用"></a>作为函数调用</h3><p>&emsp;&emsp;函数也可以被直接调用，此时绑定到全局对象。在浏览器端，window就是全局对象。比如下面的例子：函数被调用时，绑定到全局对象，接下来执行赋值语句，这相当于隐式声明了一个全局变量，这显然不是调用者希望的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> makeNoSense(x)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">makeNoSense(5);  //此时x是一个值为5的全局变量</span><br></pre></td></tr></table></figure>
-<h3 id="作为内部函数调用"><a href="#作为内部函数调用" class="headerlink" title="作为内部函数调用"></a>作为内部函数调用</h3><p>&emsp;&emsp;对于内部函数，即声明在另外一个函数体内的函数，这种绑定到全局对象的方式会产生另外一个问题。我们仍然以前面提到的point对象为例，这次我们希望在moveTo方法内部定义两个函数，分别将x，y坐标进行平移。结果可能出乎大家的意料，不仅point对象没有移动，反而多出两个全局变量x，y。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var point = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo: <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">      //内部函数</span><br><span class="line">	  var moveX = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     this.x = x;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  var moveY = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     this.y = y;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  </span><br><span class="line">	  moveX();</span><br><span class="line">	  moveY();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">   point.moveTo(1, 1); </span><br><span class="line">   point.x; //==&gt;0 </span><br><span class="line">   point.y; //==&gt;0 </span><br><span class="line">   x; //==&gt;1 </span><br><span class="line">   y; //==&gt;1</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这属于Javascript的设计缺陷，正确的设计方式是内部函数的this应该绑定到其外层函数对应的对象上，为了避免这一设计缺陷，聪明的Javascript程序员想出了变量替代的方法，该变量一般被命名为that。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var point = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">   x : 0,</span><br><span class="line">   y : 0,</span><br><span class="line">   moveTo: <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">	  var that = this;</span><br><span class="line">      //内部函数</span><br><span class="line">	  var moveX = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     that.x = x;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  var moveY = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	     that.y = y;  //this绑定到哪里去了？</span><br><span class="line">	  &#125;;</span><br><span class="line">	  </span><br><span class="line">	  moveX();</span><br><span class="line">	  moveY();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">   point.moveTo(1, 1); </span><br><span class="line">   point.x; //==&gt;1 </span><br><span class="line">   point.y; //==&gt;1</span><br></pre></td></tr></table></figure>
-<h3 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h3><p>&emsp;&emsp;Javascript支持面向对象式编程，与主流的面向对象式编程语言不同，Javascript并没有类的概念，而是使用基于原型的继承方式。相应的，Javascript中的构造函数也很特殊，如果不使用new调用，则和普通函数一样。作为又一项约定俗成的准则，构造函数以大写字母开头，提醒调用者使用正确的方式调用。如果调用正确，this绑定到新创建的对象上。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Point(x, y)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">   this.y = y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用apply或call调用"><a href="#使用apply或call调用" class="headerlink" title="使用apply或call调用"></a>使用apply或call调用</h3><p>&emsp;&emsp;在Javascript中函数也是对象，对象则有方法，apply或call就是函数对象的方法。这两个方法异常强大，它们允许切换函数执行时的上下文环境，即this绑定的对象。很多Javascript中的技巧以及类库都用到了该方法，让我们看一个具体的例子：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Point(x, y)&#123;</span><br><span class="line">   this.x = x;</span><br><span class="line">   this.y = y;</span><br><span class="line">   this.moveTo = <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">      this.x = x;</span><br><span class="line">	  this.y = y;</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p1 = new Point(0,0);</span><br><span class="line">var p2 = &#123;x: 0,y: 0&#125;;</span><br><span class="line">p1.moveTo(1,1);</span><br><span class="line">p1.moveTo.apply(p2,[10,10]);</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;在上面的例子中，我们使用构造函数生成了一个对象p1，该对象同时具有moveTo方法；使用对象字面量创建了另一个对象p2，我们看到使用apply可以将p1的方法应用到p2上，这时候this也被绑定到对象p2上。另一个方法call也具备同样功能，不同的是最后的参数不是作为一个数组统一传入，而是分开传入的。</p>
+<div class="p-section"><br>    <h3><i class="fa fa-star"></i> 模仿块级作用域</h3><br>    <p>Javascript中没有块级作用域的概念，这意味着在块语句（如循环语句）中定义的变量实际上是包含在函数中而非语句所创建的，从它有定义开始，就可以在在函数内部随处访问它。Javascript从来不会告诉你是否多次声明了同一个变量，后面的声明会覆盖掉前面的相同声明。匿名函数可以用来模仿块级作用域避免这个问题。</p><br><pre><code class="javascript">(function(){<br>   //这里是块级作用域<br>})();<br></code></pre><br>    <p>将函数声明包含在圆括号中，表示它实际上是一个函数表达式，而紧随其后的另一对圆括号会立即调用这个函数。可能感到奇怪的是左边的一对圆括号，去掉后，Javascript会把<code>function</code>关键字作为一个函数声明的开始，而函数声明后面是不能加圆括号的，这样的代码会导致错误。无论在什么地方，如果只是临时需要一些变量的话，就可以包含在块级作用域中，在其中定义的任何变量，都会在执行结束时被销毁。这种技术经常在全局作用域中被用在函数外部，从而限制向全局作用域中添加过多的变量和函数，一般来说我们都应该尽量减少向全局作用域中添加过多的变量和函数。</p><br></div><br><div class="gap-line"></div><br><div class="p-section"><br>    <h3><i class="fa fa-star"></i> 静态私有变量</h3><br>    <p>任何在函数中定义的变量，都可以认为是私有变量，因而不能再函数的外部访问这些变量。如果在这个函数内部创建一个闭包，那么闭包通过自己的作用域链也能够访问到这些变量。而利用这一点，就可以创建用于访问私有变量的公有方法，我们把有权访问私有变量和私有函数的公有方法统称为特权方法。</p><br><pre><code class="javascript">(function(){<br><br>   //私有变量和私有函数<br>   var privateVariable=10;<br><br>   function privateFunction(){<br>      return false;<br>   }<br><br>   //构造函数<br>   myObject=function(){<br>   };<br><br>   //公有和特权方法<br>   myObject.prototype.publicMethod=function(){<br>      privateVariable++;<br>      return privateFunction();<br>   };<br>})();<br></code></pre><br><br>    <p>这个模式创建了一个私有作用域，在私有作用域中，首先定义了私有变量和私有函数，然后又定义了构造函数及其公有方法。公有方法是在原型上定义的，这一点体现了典型的原型模式。需要注意的是，这个模式在定义构造函数时并没有使用函数声明，而是使用了函数表达式。函数声明只能创建局部函数，但这并不是我们所需要的，出于同样的原因，在声明<code>myObject</code>关键字时没有使用<code>var</code>关键字，这样<code>myObject</code>就成了一个全局变量，能够在私有作用域之外被访问到。</p><br></div><br><div class="gap-line"></div><br><div class="p-section"><br>    <h3><i class="fa fa-star"></i> 模块模式</h3><br>    <p>前面的模式是用于为自定义类型创建私有变量和特权方法的，而模块模式则是为单例创建私有变量和特权方法的，所谓单例，指的是只有一个实例的对象。语法形式如下：</p><br><pre><code class="javascript">var singleton=function(){<br><br>   //私有变量和私有函数<br>   var privateVariable=10;<br>   function privateFunction(){<br>      return false;<br>   }<br><br>   //特权方法<br>   return {<br>      publicProperty: true,<br>      publicMethod: function(){<br>         privateVariable++;<br>         return privateFunction();<br>      }<br>   }<br>}();<br></code></pre><br><br></div>
+
+<p><div class="gap-line"></div></p>
+<p><div class="p-section"><br>    <h3><i class="fa fa-star"></i> 增强的模块模式</h3><br>    <p>有人进一步改进了模块模式，即在返回对象之前加入对其增强的代码。这种增强的模块模式适合那些单例必须是某种类型的实例，同时还必须添加某些属性和（或）方法对其加以增强的情况。来看下面的例子。</p></div></p>
+<p><pre><code class="javascript">var singleton=function(){<br>   //私有变量和私有函数<br>   var privateVariable=10;<br>   function privateFunction(){<br>      return false;<br>   }</code></pre></p>
+<p>   //创建对象<br>   var object=new CustomeType();</p>
+<p>   //添加特权方法<br>   object.publicProperty=true;<br>   onject.publicMethod=function(){<br>      privateVariable++;<br>      return privateFunction();<br>   }</p>
+<p>   //返回这个对象<br>   return object;<br>}();</p>
 
       
     </div>
@@ -481,14 +476,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/09/25/JavaScript中的this/" rel="next" title="JavaScript中的this">
+                <i class="fa fa-chevron-left"></i> JavaScript中的this
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/08/私有变量/" rel="prev" title="私有变量">
-                私有变量 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/27/小诗一首/" rel="prev" title="小诗一首">
+                小诗一首 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#作为对象方法调用"><span class="nav-number">1.</span> <span class="nav-text">作为对象方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为函数调用"><span class="nav-number">2.</span> <span class="nav-text">作为函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为内部函数调用"><span class="nav-number">3.</span> <span class="nav-text">作为内部函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为构造函数调用"><span class="nav-number">4.</span> <span class="nav-text">作为构造函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用apply或call调用"><span class="nav-number">5.</span> <span class="nav-text">使用apply或call调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"> 模仿块级作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text"> 静态私有变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text"> 模块模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text"> 增强的模块模式</span></a></li></ol></div>
             
 
           </div>
