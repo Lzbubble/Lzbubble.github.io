@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。  前端优化的目的&amp;emsp;&amp;emsp;恰当的优化不仅能够改">
+  <meta name="description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能优化的一些方法">
 <meta property="og:url" content="http://yoursite.com/2019/03/11/前端性能优化的方法/index.html">
 <meta property="og:site_name" content="李正的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。  前端优化的目的&amp;emsp;&amp;emsp;恰当的优化不仅能够改">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-11T15:12:04.163Z">
+<meta property="og:updated_time" content="2019-04-11T15:14:07.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化的一些方法">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。  前端优化的目的&amp;emsp;&amp;emsp;恰当的优化不仅能够改">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。">
 
 
 
@@ -437,7 +437,7 @@
 
       
         <p>&emsp;&emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。</p>
-<p><--more--></--more--></p>
+<a id="more"></a>
 <h2 id="前端优化的目的"><a href="#前端优化的目的" class="headerlink" title="前端优化的目的"></a>前端优化的目的</h2><p>&emsp;&emsp;恰当的优化不仅能够改善站点的用户体验并且能够节省相当的资源利用。</p>
 <h3 id="减少-HTTP-请求数"><a href="#减少-HTTP-请求数" class="headerlink" title="减少 HTTP 请求数"></a>减少 HTTP 请求数</h3><p>&emsp;&emsp;每个HTTP请求都是有成本的，既包含时间成本也包含资源成本。一个完整的请求都需要经过 DNS寻址、与服务器建立连接、发送数据、等待服务器响应、接收数据这样一个 “漫长” 而复杂的过程。时间成本就是用户需要看到或者 “感受” 到这个资源是必须要等待这个过程结束的，资源上由于每个请求都需要携带数据，因此每个请求都需要占用带宽。由于浏览器进行并发请求的请求数是有上限的，因此请求数多了以后，浏览器需要分批进行请求，因此会增加用户的等待时间，会给用户造成站点速度慢这样一个印象，即使可能用户能看到的第一屏的资源都已经请求完了，但是浏览器的进度条会一直存在。</p>
 <p>&emsp;&emsp;减少 HTTP请求数的主要途径包括：从设计实现层面简化页面、合理设置 HTTP缓存、资源合并与压缩、合并 CSS 图片等。</p>
