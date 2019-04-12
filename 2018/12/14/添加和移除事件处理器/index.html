@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。">
+  <meta name="description" content="&amp;emsp;&amp;emsp;在计算机科学领域中最主要的性能优化技术之一就是避免无谓的工作，避免无谓的工作的概念有两重意思：别做无关紧要的工作，别重复做已经完成的工作。考虑一个添加和移除事件处理器的例子。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端性能优化的一些方法">
-<meta property="og:url" content="http://yoursite.com/2019/03/11/前端性能优化的方法/index.html">
+<meta property="og:title" content="添加和移除事件处理器">
+<meta property="og:url" content="http://yoursite.com/2018/12/14/添加和移除事件处理器/index.html">
 <meta property="og:site_name" content="Miss.Zheng">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;在计算机科学领域中最主要的性能优化技术之一就是避免无谓的工作，避免无谓的工作的概念有两重意思：别做无关紧要的工作，别重复做已经完成的工作。考虑一个添加和移除事件处理器的例子。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-11T15:14:07.652Z">
+<meta property="og:updated_time" content="2019-04-12T09:32:17.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端性能优化的一些方法">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。">
+<meta name="twitter:title" content="添加和移除事件处理器">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;在计算机科学领域中最主要的性能优化技术之一就是避免无谓的工作，避免无谓的工作的概念有两重意思：别做无关紧要的工作，别重复做已经完成的工作。考虑一个添加和移除事件处理器的例子。">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/03/11/前端性能优化的方法/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/14/添加和移除事件处理器/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>前端性能优化的一些方法 | Miss.Zheng</title>
+  <title>添加和移除事件处理器 | Miss.Zheng</title>
   
 
 
@@ -339,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/前端性能优化的方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/添加和移除事件处理器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lizheng">
@@ -356,7 +356,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">前端性能优化的一些方法
+          <h1 class="post-title" itemprop="name headline">添加和移除事件处理器
 
               
             
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="创建时间：2019-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-11T00:00:00+08:00">2019-03-11</time>
+              <time title="创建时间：2018-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-14T00:00:00+08:00">2018-12-14</time>
             
 
             
@@ -400,7 +400,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
 
                 
                 
@@ -435,21 +435,9 @@
       
 
       
-        <p>&emsp;&emsp;前端优化是复杂的，针对方方面面的资源都有不同的方式。前端优化的途径有很多，按粒度大致可以分为两类，第一类是页面级别的优化，例如 HTTP请求数、脚本的无阻塞加载、内联脚本的位置优化等 ;第二类则是代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等。</p>
+        <p>&emsp;&emsp;在计算机科学领域中最主要的性能优化技术之一就是避免无谓的工作，避免无谓的工作的概念有两重意思：别做无关紧要的工作，别重复做已经完成的工作。考虑一个添加和移除事件处理器的例子。</p>
 <a id="more"></a>
-<h2 id="前端优化的目的"><a href="#前端优化的目的" class="headerlink" title="前端优化的目的"></a>前端优化的目的</h2><p>&emsp;&emsp;恰当的优化不仅能够改善站点的用户体验并且能够节省相当的资源利用。</p>
-<h3 id="减少-HTTP-请求数"><a href="#减少-HTTP-请求数" class="headerlink" title="减少 HTTP 请求数"></a>减少 HTTP 请求数</h3><p>&emsp;&emsp;每个HTTP请求都是有成本的，既包含时间成本也包含资源成本。一个完整的请求都需要经过 DNS寻址、与服务器建立连接、发送数据、等待服务器响应、接收数据这样一个 “漫长” 而复杂的过程。时间成本就是用户需要看到或者 “感受” 到这个资源是必须要等待这个过程结束的，资源上由于每个请求都需要携带数据，因此每个请求都需要占用带宽。由于浏览器进行并发请求的请求数是有上限的，因此请求数多了以后，浏览器需要分批进行请求，因此会增加用户的等待时间，会给用户造成站点速度慢这样一个印象，即使可能用户能看到的第一屏的资源都已经请求完了，但是浏览器的进度条会一直存在。</p>
-<p>&emsp;&emsp;减少 HTTP请求数的主要途径包括：从设计实现层面简化页面、合理设置 HTTP缓存、资源合并与压缩、合并 CSS 图片等。</p>
-<h3 id="将外部脚本置底（将脚本内容在页面信息内容加载后再加载）"><a href="#将外部脚本置底（将脚本内容在页面信息内容加载后再加载）" class="headerlink" title="将外部脚本置底（将脚本内容在页面信息内容加载后再加载）"></a>将外部脚本置底（将脚本内容在页面信息内容加载后再加载）</h3><p>&emsp;&emsp;浏览器是可以并发请求的，这一特点使得其能够更快的加载资源，然而外链脚本在加载时却会阻塞其他资源，例如在脚本加载完成之前，它后面的图片、样式以及其他脚本都处于阻塞状态，直到脚本加载完成后才会开始加载。如果将脚本放在比较靠前的位置，则会影响整个页面的加载速度从而影响用户体验。所以，最简单可依赖的方法就是将脚本尽可能的往后挪，减少对并发下载的影响。</p>
-<h3 id="异步执行-inline脚本"><a href="#异步执行-inline脚本" class="headerlink" title="异步执行 inline脚本"></a>异步执行 inline脚本</h3><p>&emsp;&emsp;inline脚本对性能的影响与外部脚本相比，是有过之而无不及。inline脚本在执行的时候与外部脚本一样会阻塞并发请求，除此之外，由于浏览器在页面处理方面是单线程的，当 inline脚本在页面渲染之前执行时，页面的渲染工作则会被推迟。简而言之， inline脚本在执行的时候，页面处于空白状态。鉴于以上两点原因，建议将执行时间较长的 inline脚本异步执行，异步的方式有很多种，例如使用 script元素的defer 属性(存在兼容性问题和其他一些问题，例如不能使用 document.write)、使用setTimeout ，此外，在HTML5中引入了 Web Workers的机制，恰恰可以解决此类问题。</p>
-<h3 id="将-CSS-放在-HEAD中"><a href="#将-CSS-放在-HEAD中" class="headerlink" title="将 CSS 放在 HEAD中"></a>将 CSS 放在 HEAD中</h3><p>&emsp;&emsp;如果将 CSS放在其他地方比如 BODY中，则浏览器有可能还未下载和解析到 CSS就已经开始渲染页面了，这就导致页面由无 CSS状态跳转到 CSS状态，用户体验比较糟糕。除此之外，有些浏览器会在 CSS下载完成后才开始渲染页面，如果 CSS放在靠下的位置则会导致浏览器将渲染时间推迟。</p>
-<h3 id="异步请求-Callback"><a href="#异步请求-Callback" class="headerlink" title="异步请求 Callback"></a>异步请求 Callback</h3><p>&emsp;&emsp;如果时效性允许的话，可以考虑在 DOMLoaded事件触发的时候加载，或者使用 setTimeout方式来灵活的控制加载的时机。</p>
-<h3 id="减少不必要的-HTTP跳转"><a href="#减少不必要的-HTTP跳转" class="headerlink" title="减少不必要的 HTTP跳转"></a>减少不必要的 HTTP跳转</h3><p>&emsp;&emsp;对于以目录形式访问的 HTTP链接，很多人都会忽略链接最后是否带 ’/‘，假如你的服务器对此是区别对待的话，这其中很可能隐藏了 301跳转，增加了多余请求。</p>
-<h2 id="代码级优化"><a href="#代码级优化" class="headerlink" title="代码级优化"></a>代码级优化</h2><h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><p>&emsp;&emsp;减少DOM操作，减少浏览器的 Reflow和Repaint，减少作用域链查找还应该减少闭包的使用、减少对对象以及数组深度查找。</p>
-<h3 id="CSS选择符"><a href="#CSS选择符" class="headerlink" title="CSS选择符"></a>CSS选择符</h3><p>&emsp;&emsp;实际上浏览器对选择符的解析是从右往左进行的，注意选择符的书写顺序。</p>
-<h3 id="Image压缩"><a href="#Image压缩" class="headerlink" title="Image压缩"></a>Image压缩</h3><p>&emsp;&emsp;图片压缩，可以使用相关工具。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;除此之外，完整的前端优化还应该包括很多其他的途径，例如 CDN、 Gzip、多域名、无 Cookie服务器等等，可以继续积累学习。</p>
-
+<div class="p-section"><br>    <h3><i class="fa fa-star"></i> 典型的跨浏览器代码</h3><br><pre><code class="javascript">function addHandler(target,eventType,handler){<br>   if(target.addEventListener){   //DOM2 events<br>      target.addEventListener(eventType,handler,false);<br>   }<br>   else {   //IE<br>      target.attachEvent(“on”+eventType,handler);<br>   }<br>}<br><br>function removeHandler(target,eventType,handler){<br>   if(target.removeEventListener){  //DOM2 events<br>      target.removeEventListener(eventType,handler,false);<br>   }<br>   else {<br>      target.detachEvent(“on”+eventType,handler);<br>   }<br>}<br></code></pre><br>    <p>此代码通过测试<code>addEventListener()</code>和<code>removeEventListener()</code>来测试DOM2 level事件是否被支持。除IE外，所有主流浏览器支持DOM2 level事件，如果此方法在<code>target</code>中不存在，则假定当前浏览器为IE，并使用IE特有的方法。</p><p>咋一看这个函数似乎已经充分优化了。隐藏的性能问题在于每次函数调用时都做了重复工作，因为每次的检测过程都相同：看看指定方法是否存在。如果你假定<code>target</code>唯一值就是DOM对象，而且用户不可能在加载完页面后奇迹般的改变浏览器，那么这次检测就是重复的。如果在第一次调用<code>addHandler()</code>时就确定<code>addEventListener()</code>是存在的，那么随后每次调用它都是存在的，每次调用同一个函数都重复相同的工作是一种浪费，有几种方法可以避免它。</p><br></div><br><div class="gap-line"></div><br><div class="p-section"><br>    <h3><i class="fa fa-star"></i> 延迟加载</h3><br>    <p>第一种消除函数中的重复工作的方法是延迟加载(lazy loading)。延迟加载意味着信息被使用前不回做任何操作。比如前面的例子，在函数被调用前，没有必要判断改用哪个<br>    方法去绑定或消除事件处理器。采用延迟加载的函数版本如下：</p><br><pre><code class="javascript">function addHandler(target,eventType,handler){<br><br>   //复写现有函数<br>   if(target.addEventListener){  //DOM2 events<br>      addHandler = function(target,eventType,handler){<br>         target.addEventListener(eventType,handler,false);<br>      };<br>   }<br>   else {   //IE<br>      addHandler= function(target,eventType,handler){<br>         target.attachEvent(“on”+eventType,handler);<br>      };<br>   }<br><br>   //调用新函数<br>   addHandler(target,eventType,handler);<br>}<br><br>function removeHandler(target,eventType,handler){<br>   //复写现有函数<br>   if(target.removeEventListener){<br>      removeHandler=function(target,eventType,handler){<br>         target.removeEventListener(eventType,handler,false);<br>      };<br>   }<br>   else {  //IE<br>      removeHandler=function(target,eventType,handler){<br>         target.detachEvent(“on”+eventType,handler);<br>      };<br>   }<br><br>   //调用新函数<br>   removeHandler(target,event,handler);<br>}<br></code></pre><br>    <p>这两个函数实现了延迟加载模式。这两个方法在第一次调用时，会先检查并决定用哪种方法去绑定或取消绑定事件处理器。然后原始函数会被包含正确操作的新函数覆盖。最后一步调用新的函数，并传入原始参数。随后每次调用<code>addHandler()</code>和<code>removeHandler()</code>都不会再做检查，因为检测代码已经被新的函数覆盖。</p><br>    <p>调用延迟加载函数时，第一次总会消耗较长的时间，因为它必须运行检测接着再调用另一个函数完成任务。但随后调用相同的函数，速度会更快，因为不需要再执行检测逻辑，当一个函数在页面中不会被立即调用时延迟加载是最好的选择。</p><br></div><br><div class="gap-line"></div><br><div class="p-section"><br>    <h3><i class="fa fa-star"></i> 条件预加载</h3><br>    <p>除了延迟加载函数之外的另一种选择是：条件预加载(conditional advanceloading)，它会在脚本加载期间提前检测，而不会等到函数被调用。检测的操作依然只是一次，<br>    只是它在过程中来的更早。例如</p><br><pre><code class="javascript">var addHandler=document.body.addEventListener?<br>   function(target,eventType,handler){<br>      target.addEventListener(eventType,handler,false);<br>   }:<br>   function(target,eventType,handler){<br>      target.attachEvent(“on”+eventType,handler);<br>   };<br><br>var removeHandler=document.body.removeEventListener?<br>   function(target,eventType,handler){<br>      target.removeEventListener(eventType,handler,false);<br>   }:<br>   function(target,eventType,handler){<br>      target.detachEvent(“on”+eventType,handler);<br>   }<br></code></pre><br>    <p>这个例子会先检测<code>addEventListener()</code>和<code>removeEventListener()</code>是否存在，然后根据结果指定选择最佳的函数。如果它们存在的话，三元运算符会返回DOM2 level函数，否则返回IE特有的函数，这样做的结果是所有对<code>addHandler()</code>和<code>removeHandler()</code>的调用都十分快，因为检测提前发生了。条件预加载确保所有函数调用消耗的时间相同。其代价是需要在脚本加载时检测，而不是加载后，预加载适合于一个函数马上就要被用到，而且在整个页面的生命周期中频繁出现的场合。</p><br></div>
       
     </div>
 
@@ -479,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/25/执行环境及作用域/" rel="next" title="执行环境及作用域">
-                <i class="fa fa-chevron-left"></i> 执行环境及作用域
+              <a href="/2018/09/25/JavaScript中的this/" rel="next" title="JavaScript中的this">
+                <i class="fa fa-chevron-left"></i> JavaScript中的this
               </a>
             
           </div>
@@ -488,6 +476,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/08/私有变量/" rel="prev" title="私有变量">
+                私有变量 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -665,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端优化的目的"><span class="nav-number">1.</span> <span class="nav-text">前端优化的目的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#减少-HTTP-请求数"><span class="nav-number">1.1.</span> <span class="nav-text">减少 HTTP 请求数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将外部脚本置底（将脚本内容在页面信息内容加载后再加载）"><span class="nav-number">1.2.</span> <span class="nav-text">将外部脚本置底（将脚本内容在页面信息内容加载后再加载）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步执行-inline脚本"><span class="nav-number">1.3.</span> <span class="nav-text">异步执行 inline脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将-CSS-放在-HEAD中"><span class="nav-number">1.4.</span> <span class="nav-text">将 CSS 放在 HEAD中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步请求-Callback"><span class="nav-number">1.5.</span> <span class="nav-text">异步请求 Callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少不必要的-HTTP跳转"><span class="nav-number">1.6.</span> <span class="nav-text">减少不必要的 HTTP跳转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码级优化"><span class="nav-number">2.</span> <span class="nav-text">代码级优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Javascript"><span class="nav-number">2.1.</span> <span class="nav-text">Javascript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS选择符"><span class="nav-number">2.2.</span> <span class="nav-text">CSS选择符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image压缩"><span class="nav-number">2.3.</span> <span class="nav-text">Image压缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text"> 典型的跨浏览器代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text"> 延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text"> 条件预加载</span></a></li></ol></div>
             
 
           </div>

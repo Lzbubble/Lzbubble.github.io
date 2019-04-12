@@ -1754,7 +1754,7 @@ pre .javascript .function {
   color: #999;
 }
 .links-of-author {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .links-of-author a,
 .links-of-author span.exturl {
@@ -1774,7 +1774,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #54ff34;
+  background: #a1fc63;
 }
 .feed-link,
 .chat {
@@ -2719,6 +2719,9 @@ hr {
     text-align: center;
   }
 }
+.page-post-detail {
+  overflow: hidden;
+}
 .header {
   background: #a3c1f9;
 }
@@ -2746,8 +2749,35 @@ hr {
   padding: 0;
   border: 0;
 }
+.sidebar {
+  box-shadow: inset 2px 2px 40px #bdb2b2;
+  opacity: 0.9;
+  background-image: url("/images/bk.jpg");
+  background-size: 100% 100%;
+}
+.site-author .motion-element,
+.sidebar-inner {
+  color: #000;
+}
+.site-author-image {
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+}
+.sidebar a {
+  color: #000;
+  border-bottom: none;
+}
+.sidebar a:hover {
+  color: #fff;
+}
 .site-author-name {
   margin: 48px 0 0;
   color: #090909;
+  font-size: 20px;
   font-family: 'Comic Sans MS', sans-serif;
+}
+.links-of-author {
+  margin-top: 30px;
+  margin-bottom: 58px;
 }
