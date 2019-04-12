@@ -12,7 +12,7 @@
     box-sizing: border-box;
 	width: 800px;
     height: 400px;
-    margin: 110px auto 80px;
+    margin: 0px auto 50px;
     perspective: 800px;
 }
 #imgWrap img {
@@ -24,11 +24,11 @@ img {
     vertical-align: middle;
 	border: 0;
 }
+
 #pictures-btn{
 	box-sizing: border-box;
 	width: 160px;
-    margin: 0 auto;
-	margin-bottom: 50px;
+    margin: 0 auto 50px;
 	text-align: center;
     font: 16px/40px "微软雅黑";
     color: #fff;
@@ -37,6 +37,32 @@ img {
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+}
+
+@media (max-width: 767px){
+	#imgWrap {
+		width: 700px;
+		height: 350px;
+		margin: 0 auto 40px;
+	}
+	#imgWrap img {
+		width: 70px;
+		height: 70px;
+		float: left;
+	}
+}
+
+@media (max-width: 480px){
+	#imgWrap {
+		width: 300px;
+		height: 600px;
+		margin: 0 auto 30px;
+	}
+	#imgWrap img {
+		width: 60px;
+		height: 60px;
+		float: left;
+	}
 }
 
 </style>

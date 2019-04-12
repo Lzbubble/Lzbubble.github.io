@@ -1774,7 +1774,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #793;
+  background: #54ff34;
 }
 .feed-link,
 .chat {
@@ -2719,6 +2719,22 @@ hr {
     text-align: center;
   }
 }
+.header {
+  background: #a3c1f9;
+}
+.logo-line-before,
+.logo-line-after {
+  display: none;
+}
+#footer {
+  margin-top: 40px;
+}
+.footer-inner {
+  text-align: center;
+}
+.main-inner {
+  margin-top: 50px;
+}
 .post {
   margin-top: 1px;
   margin-bottom: 30px;
@@ -2726,10 +2742,12 @@ hr {
   -webkit-box-shadow: 0 0 20px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 20px rgba(202,203,204,0.5);
 }
-.header {
-  background: #a3c1f9;
-}
 .posts-expand .post-body #imgWrap  img {
   padding: 0;
   border: 0;
+}
+.site-author-name {
+  margin: 48px 0 0;
+  color: #090909;
+  font-family: 'Comic Sans MS', sans-serif;
 }
